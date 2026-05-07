@@ -1,0 +1,1 @@
+ALTER TABLE public.cows ADD COLUMN IF NOT EXISTS sire text, ADD COLUMN IF NOT EXISTS dam text;

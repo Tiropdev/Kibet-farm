@@ -1,0 +1,173 @@
+/* stylelint-disable at-rule-no-unknown */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Kapsabet Highlands Farm — Fresh & Natural design system.
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 120 20% 98%;
+    --foreground: 150 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 25% 12%;
+
+    /* Sage / leaf green */
+    --primary: 142 42% 38%;
+    --primary-foreground: 120 30% 98%;
+    --primary-soft: 142 45% 94%;
+
+    --secondary: 140 18% 95%;
+    --secondary-foreground: 150 25% 18%;
+
+    --muted: 140 14% 95%;
+    --muted-foreground: 150 8% 42%;
+
+    --accent: 142 45% 94%;
+    --accent-foreground: 142 45% 22%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 30 40% 15%;
+
+    --success: 142 60% 38%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 140 15% 90%;
+    --input: 140 15% 90%;
+    --ring: 142 42% 38%;
+
+    --radius: 1rem;
+
+    --shadow-card: 0 1px 2px hsl(150 20% 15% / 0.04), 0 4px 16px hsl(150 20% 15% / 0.04);
+    --shadow-elevated: 0 8px 30px hsl(142 30% 20% / 0.10);
+    --gradient-hero: linear-gradient(135deg, hsl(142 45% 50%), hsl(160 50% 38%));
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 150 20% 8%;
+    --foreground: 120 20% 96%;
+    --card: 150 20% 11%;
+    --card-foreground: 120 20% 96%;
+    --popover: 150 20% 11%;
+    --popover-foreground: 120 20% 96%;
+    --primary: 142 50% 50%;
+    --primary-foreground: 150 30% 10%;
+    --primary-soft: 142 30% 18%;
+    --secondary: 150 15% 16%;
+    --secondary-foreground: 120 20% 96%;
+    --muted: 150 15% 16%;
+    --muted-foreground: 140 10% 65%;
+    --accent: 142 30% 20%;
+    --accent-foreground: 142 50% 80%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 30 40% 10%;
+    --success: 142 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --border: 150 15% 20%;
+    --input: 150 15% 20%;
+    --ring: 142 50% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  /* Prevent iOS Safari auto-zoom on focus (input fonts must be ≥16px) */
+  input, select, textarea {
+    font-size: 16px;
+  }
+
+  /* iOS safe-area helpers */
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .pb-safe { padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem); }
+
+  /* Smooth iOS-style momentum scroll on scrollable cards */
+  .ios-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .farm-card {
+    @apply rounded-2xl bg-card border border-border;
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* Print-friendly styles for Reports & exports */
+@media print {
+  body {
+    background: white !important;
+  }
+  /* Hide app chrome */
+  aside,
+  nav,
+  header,
+  button,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .farm-card {
+    box-shadow: none !important;
+    border: 1px solid hsl(var(--border)) !important;
+    break-inside: avoid;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+}
